@@ -11,10 +11,24 @@ import AVFoundation
 
 class PlaySoundsViewController: UIViewController {
 
+    var audioPlayer:AVAudioPlayer!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        if let filePath = NSBundle.mainBundle().pathForResource("movie_quote", ofType: "mp3")  {
+            let filePathURL = NSURL.fileURLWithPath(filePath)
+            do {
+                audioPlayer = try AVAudioPlayer(contentsOfURL: filePathURL)    // This is different for Swift 2!
+                audioPlayer.enableRate = true
+            }
+            catch let error as NSError  {
+                print(error.localizedDescription)
+            }
+        } else {
+            print("There was a problem with the path.")
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -24,6 +38,7 @@ class PlaySoundsViewController: UIViewController {
     
     @IBAction func playSlowAudio(sender: UIButton) {
         //TODO: Play slow sound
+        audioPlayer.play()
         print("playing at snail speed")
     }
 
