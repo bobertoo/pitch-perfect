@@ -144,21 +144,41 @@
                                     <action selector="stopAudio:" destination="BYZ-38-t0r" eventType="touchUpInside" id="J7r-wR-cON"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PLj-tz-Dgm">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" image="Chipmunk"/>
+                                <connections>
+                                    <action selector="playChipmunkAudio:" destination="5F2-28-NG4" eventType="touchUpInside" id="8eT-IK-Qah"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K8g-qJ-Rcz">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" image="Vader"/>
+                                <connections>
+                                    <action selector="playVaderVoice:" destination="5F2-28-NG4" eventType="touchUpInside" id="0nh-qV-LQr"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="ClY-j3-lDY" firstAttribute="top" secondItem="f9N-Uv-Kba" secondAttribute="bottom" constant="50" id="1H8-Qn-Xmw"/>
+                            <constraint firstItem="PLj-tz-Dgm" firstAttribute="leading" secondItem="gIk-hF-aiU" secondAttribute="leadingMargin" constant="30" id="G4e-L3-gPZ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ClY-j3-lDY" secondAttribute="trailing" constant="18" id="IYq-0h-CtV">
                                 <variation key="widthClass=compact" constant="30"/>
                             </constraint>
                             <constraint firstItem="Erh-2m-Qjz" firstAttribute="centerX" secondItem="gIk-hF-aiU" secondAttribute="centerX" id="NQd-yu-4Lz"/>
+                            <constraint firstItem="K8g-qJ-Rcz" firstAttribute="top" secondItem="ClY-j3-lDY" secondAttribute="bottom" constant="50" id="Qe0-0b-uta"/>
                             <constraint firstItem="qSR-Cp-tN6" firstAttribute="leading" secondItem="gIk-hF-aiU" secondAttribute="leadingMargin" constant="33" id="V9q-rR-aXW">
                                 <variation key="widthClass=compact" constant="30"/>
                             </constraint>
+                            <constraint firstAttribute="trailingMargin" secondItem="K8g-qJ-Rcz" secondAttribute="trailing" constant="30" id="dL2-tr-QOB"/>
                             <constraint firstItem="Vfz-Pz-SUw" firstAttribute="top" secondItem="Erh-2m-Qjz" secondAttribute="bottom" constant="93" id="fzU-5Y-DtL">
                                 <variation key="widthClass=compact" constant="85"/>
                             </constraint>
                             <constraint firstItem="qSR-Cp-tN6" firstAttribute="top" secondItem="f9N-Uv-Kba" secondAttribute="bottom" constant="70" id="nU4-xT-v80">
+                                <variation key="widthClass=compact" constant="50"/>
+                            </constraint>
+                            <constraint firstItem="PLj-tz-Dgm" firstAttribute="top" secondItem="qSR-Cp-tN6" secondAttribute="bottom" constant="101" id="zC4-dS-mfU">
                                 <variation key="widthClass=compact" constant="50"/>
                             </constraint>
                         </constraints>
@@ -167,12 +187,18 @@
                                 <exclude reference="qSR-Cp-tN6"/>
                                 <exclude reference="ClY-j3-lDY"/>
                                 <exclude reference="Erh-2m-Qjz"/>
+                                <exclude reference="PLj-tz-Dgm"/>
+                                <exclude reference="K8g-qJ-Rcz"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="V9q-rR-aXW"/>
                                 <exclude reference="nU4-xT-v80"/>
+                                <exclude reference="G4e-L3-gPZ"/>
+                                <exclude reference="zC4-dS-mfU"/>
                                 <exclude reference="1H8-Qn-Xmw"/>
                                 <exclude reference="IYq-0h-CtV"/>
+                                <exclude reference="Qe0-0b-uta"/>
+                                <exclude reference="dL2-tr-QOB"/>
                                 <exclude reference="NQd-yu-4Lz"/>
                                 <exclude reference="fzU-5Y-DtL"/>
                             </mask>
@@ -182,12 +208,18 @@
                                 <include reference="qSR-Cp-tN6"/>
                                 <include reference="ClY-j3-lDY"/>
                                 <include reference="Erh-2m-Qjz"/>
+                                <include reference="PLj-tz-Dgm"/>
+                                <include reference="K8g-qJ-Rcz"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="V9q-rR-aXW"/>
                                 <include reference="nU4-xT-v80"/>
+                                <include reference="G4e-L3-gPZ"/>
+                                <include reference="zC4-dS-mfU"/>
                                 <include reference="1H8-Qn-Xmw"/>
                                 <include reference="IYq-0h-CtV"/>
+                                <include reference="Qe0-0b-uta"/>
+                                <include reference="dL2-tr-QOB"/>
                                 <include reference="NQd-yu-4Lz"/>
                                 <include reference="fzU-5Y-DtL"/>
                             </mask>
@@ -200,9 +232,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Chipmunk" width="100" height="100"/>
         <image name="Fast" width="100" height="100"/>
         <image name="Microphone" width="100" height="100"/>
         <image name="Slow" width="100" height="100"/>
         <image name="Stop" width="50" height="50"/>
+        <image name="Vader" width="100" height="100"/>
     </resources>
 </document>

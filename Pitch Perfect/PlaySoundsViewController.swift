@@ -13,24 +13,25 @@ class PlaySoundsViewController: UIViewController {
 
     var audioPlayer:AVAudioPlayer!
     var receivedAudio:RecordedAudio!
+    
+    var audioEngine:AVAudioEngine!
+    var audioFile:AVAudioFile!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
-//        if let filePath = NSBundle.mainBundle().pathForResource("movie_quote", ofType: "mp3")  {
+        audioEngine = AVAudioEngine()
+//        if let filePath = NSBundle.mainBundle().pathForResource("movie_quote", ofType: "mp3"){
 //            let filePathURL = NSURL.fileURLWithPath(filePath)
-//            do {
-//                
-//            }
-//            catch let error as NSError  {
-//                print(error.localizedDescription)
-//            }
+        
 //        } else {
 //            print("There was a problem with the path.")
 //        }
         audioPlayer = try! AVAudioPlayer(contentsOfURL: receivedAudio.filePathUrl)
         audioPlayer.enableRate = true
+        
+        audioEngine = AVAudioEngine()
+        audioFile = try! AVAudioFile(forReading: receivedAudio.filePathUrl)
     }
 
     override func didReceiveMemoryWarning() {
@@ -52,9 +53,41 @@ class PlaySoundsViewController: UIViewController {
         audioPlayer.play();
         print("playing at hare speed")
     }
+    @IBAction func playChipmunkAudio(sender: UIButton) {
+        playAudioWithVariablePitch(1000)
+//        audioPlayer.rate = 1;
+//        audioPlayer.play();
+//        print("playing chipmunk version")
+    }
+    @IBAction func playVaderVoice(sender: UIButton) {
+        playAudioWithVariablePitch(-1000)
+    }
+    func playAudioWithVariablePitch(pitch: Float){
+        audioPlayer.stop()
+        audioEngine.stop()
+        audioEngine.reset()
+        
+        let audioPlayerNode = AVAudioPlayerNode()
+        audioEngine.attachNode(audioPlayerNode)
+        
+        let changePitchEffect = AVAudioUnitTimePitch()
+        changePitchEffect.pitch = pitch
+        audioEngine.attachNode(changePitchEffect)
+        
+        audioEngine.connect(audioPlayerNode, to: changePitchEffect, format: nil)
+        audioEngine.connect(changePitchEffect, to: audioEngine.outputNode, format: nil)
+        
+        audioPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler: nil)
+        try! audioEngine.start()
+        
+        audioPlayerNode.play()
+        
+    }
     @IBAction func stopAudio(sender: UIButton) {
         //TODO: Stop and reset audio
         audioPlayer.stop()
+        audioEngine.stop()
+        audioEngine.reset()
         audioPlayer.currentTime = 0.0
     }
 
