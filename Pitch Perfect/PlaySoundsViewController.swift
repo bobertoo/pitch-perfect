@@ -12,23 +12,25 @@ import AVFoundation
 class PlaySoundsViewController: UIViewController {
 
     var audioPlayer:AVAudioPlayer!
+    var receivedAudio:RecordedAudio!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        if let filePath = NSBundle.mainBundle().pathForResource("movie_quote", ofType: "mp3")  {
-            let filePathURL = NSURL.fileURLWithPath(filePath)
-            do {
-                audioPlayer = try AVAudioPlayer(contentsOfURL: filePathURL)    // This is different for Swift 2!
-                audioPlayer.enableRate = true
-            }
-            catch let error as NSError  {
-                print(error.localizedDescription)
-            }
-        } else {
-            print("There was a problem with the path.")
-        }
+//        if let filePath = NSBundle.mainBundle().pathForResource("movie_quote", ofType: "mp3")  {
+//            let filePathURL = NSURL.fileURLWithPath(filePath)
+//            do {
+//                
+//            }
+//            catch let error as NSError  {
+//                print(error.localizedDescription)
+//            }
+//        } else {
+//            print("There was a problem with the path.")
+//        }
+        audioPlayer = try! AVAudioPlayer(contentsOfURL: receivedAudio.filePathUrl)
+        audioPlayer.enableRate = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,20 +41,21 @@ class PlaySoundsViewController: UIViewController {
     @IBAction func playSlowAudio(sender: UIButton) {
         //TODO: Play slow sound
         audioPlayer.stop()
-        audioPlayer.rate=0.5;
+        audioPlayer.rate = 0.5;
         audioPlayer.play();
         print("playing at snail speed")
     }
     @IBAction func playFastAudio(sender: UIButton) {
         //TODO: Play fast sound
         audioPlayer.stop()
-        audioPlayer.rate=2;
+        audioPlayer.rate = 2;
         audioPlayer.play();
         print("playing at hare speed")
     }
     @IBAction func stopAudio(sender: UIButton) {
         //TODO: Stop and reset audio
         audioPlayer.stop()
+        audioPlayer.currentTime = 0.0
     }
 
     /*
